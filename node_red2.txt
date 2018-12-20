@@ -1,0 +1,132 @@
+[
+    {
+        "id": "9d6e0150.8f8b4",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "5d7f1393.a607ec",
+        "type": "inject",
+        "z": "9d6e0150.8f8b4",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 220,
+        "wires": [
+            [
+                "39822d98.6ad5c2"
+            ]
+        ]
+    },
+    {
+        "id": "39822d98.6ad5c2",
+        "type": "function",
+        "z": "9d6e0150.8f8b4",
+        "name": "Payload",
+        "func": "msg.headers={\n    deviceKey: \"BQgdMROUY30PpXRj\"\n};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 380,
+        "y": 220,
+        "wires": [
+            [
+                "ccda0417.a6c358",
+                "e633e35e.0cc9b"
+            ]
+        ]
+    },
+    {
+        "id": "1ae5c8fd.15a8c7",
+        "type": "debug",
+        "z": "9d6e0150.8f8b4",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 740,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "ccda0417.a6c358",
+        "type": "http request",
+        "z": "9d6e0150.8f8b4",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://api.mediatek.com/mcs/v2/devices/D1MeIeXc/datachannels/temp/datapoints.csv",
+        "tls": "",
+        "x": 560,
+        "y": 220,
+        "wires": [
+            [
+                "1ae5c8fd.15a8c7",
+                "3418e9a4.354076"
+            ]
+        ]
+    },
+    {
+        "id": "3418e9a4.354076",
+        "type": "http response",
+        "z": "9d6e0150.8f8b4",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 760,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "8617ba07.faf0c8",
+        "type": "debug",
+        "z": "9d6e0150.8f8b4",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 750,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "e633e35e.0cc9b",
+        "type": "http request",
+        "z": "9d6e0150.8f8b4",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://api.mediatek.com/mcs/v2/devices/D1MeIeXc/datachannels/hum/datapoints.csv",
+        "tls": "",
+        "x": 550,
+        "y": 320,
+        "wires": [
+            [
+                "8617ba07.faf0c8",
+                "91f973e4.283bb"
+            ]
+        ]
+    },
+    {
+        "id": "91f973e4.283bb",
+        "type": "http response",
+        "z": "9d6e0150.8f8b4",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 750,
+        "y": 420,
+        "wires": []
+    }
+]

@@ -1,0 +1,176 @@
+[
+    {
+        "id": "78d70e91.80e9f",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "9fa66c0f.a6ff",
+        "type": "rpi-gpio out",
+        "z": "78d70e91.80e9f",
+        "name": "GreenLED",
+        "pin": "11",
+        "set": true,
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "x": 770,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "46c9ec53.167154",
+        "type": "inject",
+        "z": "78d70e91.80e9f",
+        "name": "ON",
+        "topic": "",
+        "payload": "1",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 70,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "90e0f23.33d1b1",
+        "type": "inject",
+        "z": "78d70e91.80e9f",
+        "name": "OFF",
+        "topic": "",
+        "payload": "0",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 70,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "80369ca3.9678b",
+        "type": "debug",
+        "z": "78d70e91.80e9f",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 530,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "2c8c9ad9.d0fb16",
+        "type": "rpi-gpio in",
+        "z": "78d70e91.80e9f",
+        "name": "Button",
+        "pin": "7",
+        "intype": "up",
+        "debounce": "25",
+        "read": false,
+        "x": 120,
+        "y": 320,
+        "wires": [
+            [
+                "74ea2ddf.8db7e4",
+                "80369ca3.9678b"
+            ]
+        ]
+    },
+    {
+        "id": "74ea2ddf.8db7e4",
+        "type": "switch",
+        "z": "78d70e91.80e9f",
+        "name": "if input is 1",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 310,
+        "y": 320,
+        "wires": [
+            [
+                "7a8d7356.28481c"
+            ],
+            [
+                "7ef8a04e.e2ea"
+            ]
+        ]
+    },
+    {
+        "id": "7a8d7356.28481c",
+        "type": "change",
+        "z": "78d70e91.80e9f",
+        "name": "change to 0",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "0",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 530,
+        "y": 280,
+        "wires": [
+            [
+                "9fa66c0f.a6ff"
+            ]
+        ]
+    },
+    {
+        "id": "7ef8a04e.e2ea",
+        "type": "change",
+        "z": "78d70e91.80e9f",
+        "name": "change to 1",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "1",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 530,
+        "y": 360,
+        "wires": [
+            [
+                "9fa66c0f.a6ff"
+            ]
+        ]
+    }
+]
