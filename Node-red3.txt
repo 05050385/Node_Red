@@ -1,0 +1,88 @@
+[
+    {
+        "id": "bde5a4e9.a43cd8",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "ee8affe6.08758",
+        "type": "inject",
+        "z": "bde5a4e9.a43cd8",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 200,
+        "wires": [
+            [
+                "ca0c96f5.23f058"
+            ]
+        ]
+    },
+    {
+        "id": "ca0c96f5.23f058",
+        "type": "function",
+        "z": "bde5a4e9.a43cd8",
+        "name": "payload",
+        "func": "msg.headers={\n    deviceKey: \"BQgdMROUY30PpXRj\"\n    };\n    \nmsg.payload= \"temp,,99.8\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 370,
+        "y": 200,
+        "wires": [
+            [
+                "f8032930.8589d8"
+            ]
+        ]
+    },
+    {
+        "id": "f8032930.8589d8",
+        "type": "http request",
+        "z": "bde5a4e9.a43cd8",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "url": "https://api.mediatek.com/mcs/v2/devices/D1MeIeXc/datapoints.csv",
+        "tls": "",
+        "x": 580,
+        "y": 200,
+        "wires": [
+            [
+                "ff82bfbb.4fd2",
+                "86568ee7.2f878"
+            ]
+        ]
+    },
+    {
+        "id": "86568ee7.2f878",
+        "type": "http response",
+        "z": "bde5a4e9.a43cd8",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 750,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "ff82bfbb.4fd2",
+        "type": "debug",
+        "z": "bde5a4e9.a43cd8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 760,
+        "y": 140,
+        "wires": []
+    }
+]
